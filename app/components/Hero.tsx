@@ -36,7 +36,7 @@ export default function Hero() {
           <div className="absolute inset-0 rounded-[50px] bg-[#E9E7FF] blur-3xl opacity-70" />
 
           <Image
-            src="/images/hero.png"
+            src="/images/hero-living.png"
             alt="Professional cleaning company"
             width={850}
             height={700}

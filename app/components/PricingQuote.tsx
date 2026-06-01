@@ -1,46 +1,26 @@
 export default function PricingQuote() {
     return (
-      <section className="py-24 bg-[#F7F7FC]">
-        <div className="max-w-5xl mx-auto bg-white rounded-[40px] p-12 shadow-lg">
-          <div className="text-center">
-            <h2 className="text-5xl font-bold">
-              Get Your Free Quote
-            </h2>
+      <section className="bg-[#F7F7FC] py-24">
+        <div className="mx-auto max-w-5xl rounded-[40px] bg-white px-10 py-20 text-center shadow-xl">
+          <span className="rounded-full bg-[#E9E7FF] px-5 py-2 text-sm font-semibold text-[#6C63FF]">
+            Premium Cleaning Services
+          </span>
   
-            <p className="text-gray-500 mt-5 text-lg">
-              Request a professional cleaning service today.
-            </p>
-          </div>
+          <h2 className="mt-6 text-5xl font-bold text-[#111]">
+            Ready for a spotless home?
+          </h2>
   
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
-            <input
-              type="text"
-              placeholder="Your Name"
-              className="bg-[#F7F7FC] p-5 rounded-2xl outline-none"
-            />
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#6B7280]">
+            Schedule your residential or office cleaning service in minutes with
+            our trusted professional team.
+          </p>
   
-            <input
-              type="email"
-              placeholder="Email Address"
-              className="bg-[#F7F7FC] p-5 rounded-2xl outline-none"
-            />
-  
-            <input
-              type="text"
-              placeholder="Service Type"
-              className="bg-[#F7F7FC] p-5 rounded-2xl outline-none"
-            />
-  
-            <input
-              type="text"
-              placeholder="Phone Number"
-              className="bg-[#F7F7FC] p-5 rounded-2xl outline-none"
-            />
-          </div>
-  
-          <button className="mt-8 w-full bg-[#6C63FF] text-white py-5 rounded-2xl text-lg font-medium">
-            Request Quote
-          </button>
+          <a
+            href="/booking"
+            className="mt-10 inline-flex rounded-full bg-[#6C63FF] px-10 py-5 text-lg font-semibold text-white transition hover:scale-105"
+          >
+            Book Cleaning Service
+          </a>
         </div>
       </section>
     );
