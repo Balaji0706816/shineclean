@@ -1,6 +1,8 @@
 export default function InfoPage() { return (
     <div>
-        <h1>Arianna</h1>
+        <h1>Arianna
+            sddsdsdffd
+        </h1>
     </div>
 )
 }
