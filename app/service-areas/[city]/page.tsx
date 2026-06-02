@@ -91,6 +91,8 @@ export default function CityPage({
     phone: "",
     email: "",
     service: "",
+    propertySize: "",
+    date: "",
     message: "",
   });
 
@@ -134,7 +136,9 @@ export default function CityPage({
           phone: "",
           email: "",
           service: "",
+          propertySize: "",
           message: "",
+          date: "",
         });
       } else {
         alert("Failed to submit request.");
@@ -248,13 +252,31 @@ export default function CityPage({
                   <option>Recurring Cleaning</option>
                   <option>Maid Service</option>
                 </select>
+                <div className="grid gap-5 md:grid-cols-2">
+  <input
+    type="date"
+    name="date"
+    value={formData.date}
+    onChange={handleChange}
+    className="rounded-2xl border border-gray-200 bg-white pl-4 pr-6 py-5 text-gray-700 outline-none"
+/>
+
+  <input
+    type="text"
+    name="propertySize"
+    value={formData.propertySize}
+    onChange={handleChange}
+    placeholder="Property Size"
+    className="rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
+  />
+</div>
 
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   className="rounded-xl border border-gray-200 bg-white px-5 py-4 text-gray-900 placeholder:text-gray-400 outline-none"
-                  placeholder="Additional information"
+                  placeholder="Preferred date, time, and additional details"
                 />
 
                 <button

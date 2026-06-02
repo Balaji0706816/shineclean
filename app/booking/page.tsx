@@ -153,11 +153,13 @@ export default function BookingPage() {
                 required
                 className="rounded-xl border border-gray-200 bg-white px-5 py-4 text-gray-900 placeholder:text-gray-400 outline-none"
               >
-                <option value="">Select Service</option>
-                <option>Basic Cleaning</option>
-                <option>Deep Cleaning</option>
-                <option>Move-In / Move-Out</option>
-                <option>Office Cleaning</option>
+                <option value="">Select service</option>
+                  <option>House Cleaning</option>
+                  <option>Deep Cleaning</option>
+                  <option>Apartment Cleaning</option>
+                  <option>Move Out Cleaning</option>
+                  <option>Recurring Cleaning</option>
+                  <option>Maid Service</option>
               </select>
 
               <input

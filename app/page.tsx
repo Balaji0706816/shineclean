@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Link from "next/link";
@@ -43,11 +46,80 @@ const steps = [
 ];
 
 export default function Home() {
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: "",
+    propertySize: "",
+    message: "",
+    date: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          service: formData.service,
+          propertySize: formData.propertySize,
+          message: formData.message,
+          date: formData.date || "",
+        }),
+      });
+
+      if (response.ok) {
+        setSuccess(true);
+
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          service: "",
+          propertySize: "",
+          message: "",
+          date: "",
+        });
+
+        setTimeout(() => {
+          setSuccess(false);
+        }, 5000);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Request failed. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="bg-white text-[#111]">
       <Navbar />
 
-      {/* HERO */}
       <section className="bg-[#F6F9F2] px-6 py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1fr_520px]">
           <div>
@@ -98,40 +170,106 @@ export default function Home() {
           </div>
 
           {/* BOOKING FORM */}
-          <div className="rounded-[34px] bg-[#F542A0] p-8 text-white shadow-2xl">
-            <h2 className="text-center text-4xl font-extrabold">
-              Book Your Cleaning
-            </h2>
-            <p className="mt-2 text-center text-white/90">
-              Quick request. No commitment.
-            </p>
+          <div className="rounded-[34px] bg-[#F542A0] p-10 shadow-sm">
+  <h2 className="text-4xl font-extrabold">
+    Get Your Estimate & Book Now
+  </h2>
 
-            <form className="mt-8 space-y-5">
-              <input className="w-full rounded-xl bg-white px-5 py-4 text-black outline-none" placeholder="Full Name *" />
-              <div className="grid gap-5 sm:grid-cols-2">
-                <input className="rounded-xl bg-white px-5 py-4 text-black outline-none" placeholder="Phone Number *" />
-                <input className="rounded-xl bg-white px-5 py-4 text-black outline-none" placeholder="Email Address *" />
-              </div>
-              <select className="w-full rounded-xl bg-white px-5 py-4 text-gray-600 outline-none">
-                <option>Select Service Type</option>
-                <option>House Cleaning</option>
-                <option>Deep Cleaning</option>
-                <option>Apartment Cleaning</option>
-                <option>Move-In / Move-Out Cleaning</option>
-                <option>Recurring Cleaning</option>
-                <option>Office Cleaning</option>
-              </select>
-              <input className="w-full rounded-xl bg-white px-5 py-4 text-black outline-none" placeholder="Property Size / Square Feet" />
-              <textarea className="h-32 w-full rounded-xl bg-white px-5 py-4 text-black outline-none" placeholder="Preferred date, time, and additional details" />
-              <button className="w-full rounded-full bg-[#2EC4B6] px-8 py-4 text-lg font-bold text-white transition hover:bg-[#22b3a6]">
-                Submit Request
-              </button>
-            </form>
-          </div>
-        </div>
+  <p className="mt-3 text-lg text-gray-700">
+    Complete the form below and our team will contact you shortly.
+  </p>
+
+  <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+    <input
+      name="name"
+      value={formData.name}
+      onChange={handleChange}
+      required
+      className="w-full rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
+      placeholder="Full Name *"
+    />
+
+    <div className="grid gap-5 sm:grid-cols-2">
+      <input
+        name="phone"
+        value={formData.phone}
+        onChange={handleChange}
+        required
+        className="rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
+        placeholder="Phone Number *"
+      />
+
+      <input
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+        className="rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
+        placeholder="Email Address *"
+      />
+    </div>
+
+    <select
+      name="service"
+      value={formData.service}
+      onChange={handleChange}
+      required
+      className="w-full rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-700 outline-none"
+    >
+      <option value="">Select Service Type</option>
+      <option>House Cleaning</option>
+      <option>Deep Cleaning</option>
+      <option>Apartment Cleaning</option>
+      <option>Move-Out Cleaning</option>
+      <option>Recurring Cleaning</option>
+      <option>Maid Service</option>
+    </select>
+
+    <div className="grid gap-5 sm:grid-cols-2">
+      <input
+        type="date"
+        name="date"
+        value={formData.date}
+        onChange={handleChange}
+        className="rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-700 outline-none"
+      />
+
+      <input
+        name="propertySize"
+        value={formData.propertySize}
+        onChange={handleChange}
+        className="rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
+        placeholder="Property Size"
+      />
+    </div>
+
+    <textarea
+      name="message"
+      value={formData.message}
+      onChange={handleChange}
+      rows={5}
+      className="w-full rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
+      placeholder="Preferred date, time, and additional details"
+    />
+
+    {success && (
+      <div className="rounded-2xl bg-white px-5 py-4 text-center font-semibold text-green-600">
+        Thank you! Your booking request was submitted successfully.
+      </div>
+    )}
+
+    <button
+      type="submit"
+      className="w-full rounded-full bg-[#6C63FF] px-8 py-5 text-lg font-bold text-white transition hover:bg-[#574ee4]"
+    >
+      Submit Booking Request
+    </button>
+  </form>
+</div>
+</div>
       </section>
 
-      {/* SERVICES */}
       <section className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
@@ -167,7 +305,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY CHOOSE */}
       <section className="bg-[#F6F9F2] px-6 py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <div>
@@ -180,25 +317,8 @@ export default function Home() {
             <p className="mt-6 text-lg leading-8 text-gray-700">
               We know letting someone into your home is personal. That is why
               ShineClean focuses on dependable service, respectful communication,
-              and careful cleaning from the first message to the final
-              walkthrough. Every service is handled with attention to the rooms,
-              surfaces, and details that matter most to you.
+              and careful cleaning from the first message to the final walkthrough.
             </p>
-
-            <div className="mt-8 space-y-4 text-lg font-semibold">
-              {[
-                "Clear communication before and after service",
-                "Flexible one-time and recurring cleaning options",
-                "Careful attention to kitchens, bathrooms, floors, and surfaces",
-                "Eco-friendly cleaning products available upon request",
-                "Simple booking and secure payment options",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-3">
-                  <CheckCircle className="text-[#2EC4B6]" />
-                  {item}
-                </div>
-              ))}
-            </div>
           </div>
 
           <div className="rounded-[34px] bg-white p-8 shadow-sm">
@@ -219,7 +339,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROCESS */}
       <section className="px-6 py-24">
         <div className="mx-auto max-w-7xl text-center">
           <p className="font-bold uppercase tracking-[0.25em] text-[#F542A0]">
@@ -243,7 +362,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PAYMENT / TRUST */}
       <section className="bg-[#F6F9F2] px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="rounded-[36px] bg-white p-10 shadow-sm">
@@ -258,8 +376,6 @@ export default function Home() {
                 <p className="mt-6 text-lg leading-8 text-gray-700">
                   Customers can request a cleaning, choose the service they need,
                   share property details, and receive follow-up from the team.
-                  The goal is to make the process simple, clear, and comfortable
-                  from start to finish.
                 </p>
               </div>
 
@@ -269,7 +385,10 @@ export default function Home() {
                   [Phone, "Phone Support"],
                   [ShieldCheck, "Secure Request"],
                 ].map(([Icon, label]: any) => (
-                  <div key={label} className="rounded-3xl bg-[#F6F9F2] p-7 text-center">
+                  <div
+                    key={label}
+                    className="rounded-3xl bg-[#F6F9F2] p-7 text-center"
+                  >
                     <Icon className="mx-auto text-[#2EC4B6]" size={34} />
                     <p className="mt-4 font-bold">{label}</p>
                   </div>
@@ -280,7 +399,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="px-6 py-24">
         <div className="mx-auto max-w-7xl rounded-[40px] bg-[#6C63FF] px-8 py-20 text-center text-white shadow-xl">
           <h2 className="text-5xl font-extrabold">

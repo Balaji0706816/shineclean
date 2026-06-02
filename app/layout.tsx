@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 
+export const metadata: Metadata = {
+  title: "House Cleaning Services in Boston | ShineClean",
+  description:
+    "Professional house cleaning, deep cleaning, apartment cleaning, move-out cleaning, and recurring cleaning services across Greater Boston.",
+};
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
@@ -13,11 +18,6 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-  title: "Maria's Cleaning Service",
-  description: "Professional home cleaning tailored to you",
-};
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
