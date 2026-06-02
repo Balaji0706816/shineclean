@@ -13,36 +13,39 @@ import {
   ShieldCheck,
   ClipboardCheck,
   CreditCard,
+  Clock,
+  HomeIcon,
+  MessageCircle,
 } from "lucide-react";
 
 const services = [
   {
     title: "Residential Cleaning",
-    text: "Reliable home cleaning for busy families, renters, and homeowners who want a fresh space without the stress.",
+    text: "Reliable home cleaning for families, renters, and homeowners who want a fresh, comfortable space without the stress.",
     icon: House,
   },
   {
     title: "Deep Cleaning",
-    text: "A detailed top-to-bottom clean for kitchens, bathrooms, floors, baseboards, and hard-to-reach areas.",
+    text: "Detailed top-to-bottom cleaning for kitchens, bathrooms, floors, baseboards, appliances, and hard-to-reach areas.",
     icon: Sparkles,
   },
   {
     title: "Recurring Cleaning",
-    text: "Weekly, biweekly, and monthly cleaning plans designed to keep your home consistently fresh.",
+    text: "Weekly, biweekly, and monthly cleaning plans designed to keep your home consistently clean and easy to maintain.",
     icon: CalendarCheck,
   },
   {
     title: "Move-In / Move-Out",
-    text: "Perfect for apartments, rentals, new homes, and preparing a space before or after moving.",
+    text: "Professional cleaning for apartments, rentals, new homes, and properties that need a fresh start before or after moving.",
     icon: ClipboardCheck,
   },
 ];
 
 const steps = [
   ["Request a Quote", "Tell us what you need cleaned and share your preferred date."],
-  ["Confirm Details", "We review your home size, service type, and schedule."],
-  ["We Clean", "Our team arrives prepared with care, respect, and attention to detail."],
-  ["Enjoy Your Space", "Walk into a cleaner, fresher, more comfortable home."],
+  ["Confirm Details", "We review your property size, service type, and schedule."],
+  ["We Clean", "Our team arrives prepared and completes the service with care."],
+  ["Enjoy Your Home", "Relax in a cleaner, fresher, and more comfortable space."],
 ];
 
 export default function Home() {
@@ -91,7 +94,6 @@ export default function Home() {
 
       if (response.ok) {
         setSuccess(true);
-
         setFormData({
           name: "",
           phone: "",
@@ -102,9 +104,7 @@ export default function Home() {
           date: "",
         });
 
-        setTimeout(() => {
-          setSuccess(false);
-        }, 5000);
+        setTimeout(() => setSuccess(false), 5000);
       } else {
         alert("Something went wrong. Please try again.");
       }
@@ -120,156 +120,156 @@ export default function Home() {
     <main className="bg-white text-[#111]">
       <Navbar />
 
-      <section className="bg-[#F6F9F2] px-6 py-20">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1fr_520px]">
-          <div>
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-[#2EC4B6]" />
-              PROFESSIONAL CLEANING SERVICE
-            </div>
-
-            <h1 className="max-w-3xl text-5xl font-extrabold leading-tight tracking-tight md:text-7xl">
-              Reliable House Cleaning for{" "}
-              <span className="text-[#F542A0]">Busy Homes</span>
-            </h1>
-
-            <p className="mt-7 max-w-2xl text-xl leading-9 text-gray-700">
-              ShineClean helps families, renters, professionals, and businesses
-              keep their spaces clean, fresh, and comfortable. From one-time
-              deep cleaning to recurring home care, our goal is to make cleaning
-              simple, professional, and stress-free.
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-5">
-              <Link
-                href="/booking"
-                className="rounded-full bg-[#F542A0] px-8 py-4 text-lg font-bold text-white shadow-lg transition hover:-translate-y-1 hover:bg-[#e73594]"
-              >
-                Get Your Free Quote
-              </Link>
-
-              <a
-                href="tel:6175557890"
-                className="inline-flex items-center gap-3 rounded-full border border-gray-200 bg-white px-8 py-4 text-lg font-bold shadow-sm transition hover:-translate-y-1"
-              >
-                <Phone size={20} />
-                (617) 555-7890
-              </a>
-            </div>
-
-            <div className="mt-10 grid gap-4 text-base font-semibold text-gray-800 sm:grid-cols-3">
-              {["Flexible Scheduling", "Careful Cleaning", "Clear Communication"].map(
-                (item) => (
-                  <div key={item} className="flex items-center gap-2">
-                    <CheckCircle size={20} className="text-[#2EC4B6]" />
-                    {item}
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-
-          {/* BOOKING FORM */}
-          <div className="rounded-[34px] bg-[#F542A0] p-10 shadow-sm">
-  <h2 className="text-4xl font-extrabold">
-    Get Your Estimate & Book Now
-  </h2>
-
-  <p className="mt-3 text-lg text-gray-700">
-    Complete the form below and our team will contact you shortly.
-  </p>
-
-  <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-    <input
-      name="name"
-      value={formData.name}
-      onChange={handleChange}
-      required
-      className="w-full rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
-      placeholder="Full Name *"
-    />
-
-    <div className="grid gap-5 sm:grid-cols-2">
-      <input
-        name="phone"
-        value={formData.phone}
-        onChange={handleChange}
-        required
-        className="rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
-        placeholder="Phone Number *"
-      />
-
-      <input
-        name="email"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-        className="rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
-        placeholder="Email Address *"
-      />
-    </div>
-
-    <select
-      name="service"
-      value={formData.service}
-      onChange={handleChange}
-      required
-      className="w-full rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-700 outline-none"
-    >
-      <option value="">Select Service Type</option>
-      <option>House Cleaning</option>
-      <option>Deep Cleaning</option>
-      <option>Apartment Cleaning</option>
-      <option>Move-Out Cleaning</option>
-      <option>Recurring Cleaning</option>
-      <option>Maid Service</option>
-    </select>
-
-    <div className="grid gap-5 sm:grid-cols-2">
-      <input
-        type="date"
-        name="date"
-        value={formData.date}
-        onChange={handleChange}
-        className="rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-700 outline-none"
-      />
-
-      <input
-        name="propertySize"
-        value={formData.propertySize}
-        onChange={handleChange}
-        className="rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
-        placeholder="Property Size"
-      />
-    </div>
-
-    <textarea
-      name="message"
-      value={formData.message}
-      onChange={handleChange}
-      rows={5}
-      className="w-full rounded-2xl border border-gray-200 bg-white px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none"
-      placeholder="Preferred date, time, and additional details"
-    />
-
-    {success && (
-      <div className="rounded-2xl bg-white px-5 py-4 text-center font-semibold text-green-600">
-        Thank you! Your booking request was submitted successfully.
+      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_15%_20%,#E9E7FF_0%,transparent_28%),radial-gradient(circle_at_85%_10%,#E8F7EF_0%,transparent_30%),linear-gradient(135deg,#FBFCF8_0%,#F4F8EF_50%,#F7F5FF_100%)] px-6 py-32">
+  <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.1fr_500px]">
+    <div>
+      <div className="mb-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold shadow-sm">
+        <span className="h-2 w-2 rounded-full bg-[#2EC4B6]" />
+        PROFESSIONAL CLEANING SERVICE
       </div>
-    )}
 
-    <button
-      type="submit"
-      className="w-full rounded-full bg-[#6C63FF] px-8 py-5 text-lg font-bold text-white transition hover:bg-[#574ee4]"
+      <h1 className="max-w-3xl text-5xl font-extrabold leading-tight tracking-tight md:text-[58px]">
+        Professional House Cleaning{" "}
+        <span className="text-text-[#5B57F6]">Across Greater Boston</span>
+      </h1>
+
+      <p className="mt-7 max-w-2xl text-xl leading-9 text-gray-700">
+        ShineClean provides reliable residential cleaning, deep cleaning,
+        apartment cleaning, move-in/move-out cleaning, and recurring home care
+        with simple booking and clear communication.
+      </p>
+
+      <div className="mt-10 flex flex-wrap gap-5">
+        <Link
+          href="/booking"
+          className="rounded-full bg-[#6C63FF] px-8 py-4 text-lg font-bold text-white shadow-lg transition hover:bg-[#574ee4]"
+        >
+          Get Your Free Quote
+        </Link>
+
+        <a
+          href="tel:6175557890"
+          className="inline-flex items-center gap-3 rounded-full border border-gray-200 bg-white px-8 py-4 text-lg font-bold shadow-sm"
+        >
+          <Phone size={20} />
+          (617) 555-7890
+        </a>
+      </div>
+
+      <div className="mt-10 grid gap-4 text-base font-semibold text-gray-800 sm:grid-cols-2">
+        {[
+        ].map((item) => (
+          <div key={item} className="flex items-center gap-2">
+            <CheckCircle size={20} className="text-[#2EC4B6]" />
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div 
+    className="rounded-[36px] border border-white/80 bg-white/95 p-8 shadow-[0_30px_80px_rgba(108,99,255,0.12)] backdrop-blur-sm"
     >
-      Submit Booking Request
-    </button>
-  </form>
-</div>
-</div>
-      </section>
+      <h2 className="text-4xl font-extrabold">
+        Request Your Free Cleaning Estimate
+      </h2>
 
+      <p className="mt-3 text-lg leading-7 text-gray-600">
+        Tell us about your cleaning needs and our team will contact you with a
+        customized quote.
+      </p>
+
+      <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+        <input
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="w-full rounded-2xl border border-gray-200 bg-[#F8F8F8] px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#6C63FF]"
+          placeholder="Full Name *"
+        />
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <input
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            className="rounded-2xl border border-gray-200 bg-[#F8F8F8] px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#6C63FF]"
+            placeholder="Phone Number *"
+          />
+
+          <input
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="rounded-2xl border border-gray-200 bg-[#F8F8F8] px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#6C63FF]"
+            placeholder="Email Address *"
+          />
+        </div>
+
+        <select
+          name="service"
+          value={formData.service}
+          onChange={handleChange}
+          required
+          className="w-full rounded-2xl border border-gray-200 bg-[#F8F8F8] px-6 py-5 text-gray-700 outline-none focus:border-[#6C63FF]"
+        >
+          <option value="">Select Service Type</option>
+          <option>House Cleaning</option>
+          <option>Deep Cleaning</option>
+          <option>Apartment Cleaning</option>
+          <option>Move-Out Cleaning</option>
+          <option>Recurring Cleaning</option>
+          <option>Maid Service</option>
+        </select>
+
+        <div className="grid gap-5 sm:grid-cols-2">
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+            className="rounded-2xl border border-gray-200 bg-[#F8F8F8] px-6 py-5 text-gray-700 outline-none focus:border-[#6C63FF]"
+          />
+
+          <input
+            name="propertySize"
+            value={formData.propertySize}
+            onChange={handleChange}
+            className="rounded-2xl border border-gray-200 bg-[#F8F8F8] px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#6C63FF]"
+            placeholder="Property Size"
+          />
+        </div>
+
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          rows={5}
+          className="w-full rounded-2xl border border-gray-200 bg-[#F8F8F8] px-6 py-5 text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#6C63FF]"
+          placeholder="Preferred date, time, and additional details"
+        />
+
+        {success && (
+          <div className="rounded-2xl bg-green-50 px-5 py-4 text-center font-semibold text-green-700">
+            Thank you! Your booking request was submitted successfully.
+          </div>
+        )}
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full rounded-full bg-[#6C63FF] px-8 py-5 text-lg font-bold text-white transition hover:bg-[#574ee4] disabled:opacity-60"
+        >
+          {loading ? "Submitting..." : "Submit Booking Request"}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
       <section className="px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="text-center">
@@ -287,7 +287,7 @@ export default function Home() {
               return (
                 <div
                   key={service.title}
-                  className="rounded-[30px] border border-gray-100 bg-[#F6F9F2] p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                  className="rounded-[32px] bg-white p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] border border-white transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_80px_rgba(15,23,42,0.12)]"
                 >
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white">
                     <Icon size={30} className="text-[#2EC4B6]" />
@@ -298,6 +298,12 @@ export default function Home() {
                   <p className="mt-4 leading-7 text-gray-700">
                     {service.text}
                   </p>
+                  <Link
+                    href="/services"
+                    className="mt-6 inline-block font-bold text-[#6C63FF]"
+                  >
+                    Learn More →
+                  </Link>
                 </div>
               );
             })}
@@ -315,9 +321,10 @@ export default function Home() {
               Professional cleaning with care, trust, and consistency
             </h2>
             <p className="mt-6 text-lg leading-8 text-gray-700">
-              We know letting someone into your home is personal. That is why
-              ShineClean focuses on dependable service, respectful communication,
-              and careful cleaning from the first message to the final walkthrough.
+              We know letting someone into your home is personal. ShineClean
+              focuses on dependable service, respectful communication, careful
+              cleaning, and a simple process from the first message to the final
+              walkthrough.
             </p>
           </div>
 
@@ -339,7 +346,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-24">
+      <section className="bg-gradient-to-b from-white to-[#F8FAFC] px-6 py-28">
         <div className="mx-auto max-w-7xl text-center">
           <p className="font-bold uppercase tracking-[0.25em] text-[#F542A0]">
             How It Works
@@ -351,7 +358,7 @@ export default function Home() {
           <div className="mt-16 grid gap-8 md:grid-cols-4">
             {steps.map(([title, text], index) => (
               <div key={title} className="rounded-[30px] bg-[#F6F9F2] p-8">
-                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-white text-3xl font-extrabold text-[#2EC4B6]">
+                <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-white text-3xl font-extrabold text-[#6C63FF]">
                   {index + 1}
                 </div>
                 <h3 className="mt-6 text-2xl font-extrabold">{title}</h3>
@@ -362,9 +369,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#F6F9F2] px-6 py-24">
+      <section className="bg-gradient-to-r from-[#F8FAFC] to-[#F4F8EF] px-6 py-28">
         <div className="mx-auto max-w-7xl">
-          <div className="rounded-[36px] bg-white p-10 shadow-sm">
+          <div className="rounded-[36px] bg-white p-7 shadow-sm">
             <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.2fr]">
               <div>
                 <p className="font-bold uppercase tracking-[0.25em] text-[#F542A0]">
@@ -400,20 +407,20 @@ export default function Home() {
       </section>
 
       <section className="px-6 py-24">
-        <div className="mx-auto max-w-7xl rounded-[40px] bg-[#6C63FF] px-8 py-20 text-center text-white shadow-xl">
+        <div className="mx-auto max-w-7xl rounded-[40px] bg-gradient-to-r from-[#5B52E8] to-[#7C73FF] px-8 py-20 text-center text-white shadow-xl">
           <h2 className="text-5xl font-extrabold">
-            Ready for a cleaner, fresher home?
+            Request Your Free Cleaning Estimate Today
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/90">
-            Tell us what you need cleaned and our team will help you schedule a
-            professional cleaning service that fits your home and routine.
+            Tell us about your property and cleaning needs. Our team will review
+            your request and contact you with a customized quote.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/booking"
               className="rounded-full bg-white px-10 py-4 font-bold text-[#6C63FF]"
             >
-              Book Cleaning
+              Get Free Quote
             </Link>
             <a
               href="tel:6175557890"
@@ -427,5 +434,5 @@ export default function Home() {
 
       <Footer />
     </main>
-  );
+    )
 }
