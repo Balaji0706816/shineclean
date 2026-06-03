@@ -1,24 +1,33 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, Variants } from "framer-motion";
 
-type Direction = "up" | "down" | "left" | "right" | "fade";
+type Direction = "up" | "down" | "left" | "right";
 
-interface Props {
+type ScrollRevealProps = {
   children: React.ReactNode;
   direction?: Direction;
   delay?: number;
   className?: string;
-  once?: boolean;
-}
+};
 
-const variants: Record<Direction, { hidden: object; visible: object }> = {
-  up:    { hidden: { opacity: 0, y: 40 },  visible: { opacity: 1, y: 0 } },
-  down:  { hidden: { opacity: 0, y: -40 }, visible: { opacity: 1, y: 0 } },
-  left:  { hidden: { opacity: 0, x: -50 }, visible: { opacity: 1, x: 0 } },
-  right: { hidden: { opacity: 0, x: 50 },  visible: { opacity: 1, x: 0 } },
-  fade:  { hidden: { opacity: 0 },          visible: { opacity: 1 } },
+const variants: Record<Direction, Variants> = {
+  up: {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0 },
+  },
+  down: {
+    hidden: { opacity: 0, y: -40 },
+    visible: { opacity: 1, y: 0 },
+  },
+  left: {
+    hidden: { opacity: 0, x: -40 },
+    visible: { opacity: 1, x: 0 },
+  },
+  right: {
+    hidden: { opacity: 0, x: 40 },
+    visible: { opacity: 1, x: 0 },
+  },
 };
 
 export default function ScrollReveal({
@@ -26,19 +35,19 @@ export default function ScrollReveal({
   direction = "up",
   delay = 0,
   className = "",
-  once = true,
-}: Props) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once, margin: "-60px" });
-
+}: ScrollRevealProps) {
   return (
     <motion.div
-      ref={ref}
       className={className}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
       variants={variants[direction]}
-      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{
+        duration: 0.65,
+        ease: "easeOut",
+        delay,
+      }}
     >
       {children}
     </motion.div>
