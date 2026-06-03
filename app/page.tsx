@@ -4,6 +4,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Link from "next/link";
+import ScrollReveal from "./components/ScrollReveal";
 import {
   CheckCircle,
   Phone,
@@ -120,17 +121,32 @@ export default function Home() {
     <main className="bg-white text-[#111]">
       <Navbar />
 
-      <section className="relative overflow-hidden bg-[radial-gradient(circle_at_15%_20%,#E9E7FF_0%,transparent_28%),radial-gradient(circle_at_85%_10%,#E8F7EF_0%,transparent_30%),linear-gradient(135deg,#FBFCF8_0%,#F4F8EF_50%,#F7F5FF_100%)] px-6 py-32">
-  <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.1fr_500px]">
+      <section
+        className="relative overflow-hidden px-6 py-32"
+        style={{
+          backgroundImage: "url('/images/bg-pricing.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(255,255,255,0.22)" }} />
+  <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[1.1fr_500px]">
+    <ScrollReveal direction="left">
     <div>
       <div className="mb-7 inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-bold shadow-sm">
         <span className="h-2 w-2 rounded-full bg-[#2EC4B6]" />
         PROFESSIONAL CLEANING SERVICE
       </div>
 
-      <h1 className="max-w-3xl text-5xl font-extrabold leading-tight tracking-tight md:text-[58px]">
-        Professional House Cleaning{" "}
-        <span className="text-text-[#5B57F6]">Across Greater Boston</span>
+      <h1 className="max-w-3xl leading-tight tracking-tight">
+        <span className="block text-3xl font-light text-[#666] md:text-4xl">Professional House Cleaning</span>
+        <span className="block text-5xl font-extrabold md:text-[58px]">
+          Across{" "}
+          <span className="bg-gradient-to-r from-[#6C63FF] to-[#9D97FF] bg-clip-text text-transparent">
+            Greater Boston
+          </span>
+        </span>
       </h1>
 
       <p className="mt-7 max-w-2xl text-xl leading-9 text-gray-700">
@@ -166,8 +182,10 @@ export default function Home() {
         ))}
       </div>
     </div>
+    </ScrollReveal>
 
-    <div 
+    <ScrollReveal direction="right" delay={0.15}>
+    <div
     className="rounded-[36px] border border-white/80 bg-white/95 p-8 shadow-[0_30px_80px_rgba(108,99,255,0.12)] backdrop-blur-sm"
     >
       <h2 className="text-4xl font-extrabold">
@@ -268,25 +286,37 @@ export default function Home() {
         </button>
       </form>
     </div>
+    </ScrollReveal>
   </div>
 </section>
-      <section className="px-6 py-24">
-        <div className="mx-auto max-w-7xl">
+      <section
+        className="relative overflow-hidden px-6 py-24"
+        style={{
+          backgroundImage: "url('/images/bg-cta.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(255,255,255,0.20)" }} />
+        <div className="relative mx-auto max-w-7xl">
+          <ScrollReveal direction="up">
           <div className="text-center">
-            <p className="font-bold uppercase tracking-[0.25em] text-[#F542A0]">
+            <p className="font-bold uppercase tracking-[0.25em] text-white">
               Our Services
             </p>
-            <h2 className="mt-4 text-5xl font-extrabold">
-              Cleaning services designed around your home
+            <h2 className="mt-4 leading-tight">
+              <span className="block text-3xl font-light text-[#888]">Cleaning services designed</span>
+              <span className="block text-5xl font-extrabold">around <span className="text-white">your home</span></span>
             </h2>
           </div>
-
+          </ScrollReveal>
           <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {services.map((service) => {
+            {services.map((service, i) => {
               const Icon = service.icon;
               return (
+                <ScrollReveal key={service.title} direction="up" delay={i * 0.1}>
                 <div
-                  key={service.title}
                   className="rounded-[32px] bg-white p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)] border border-white transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_80px_rgba(15,23,42,0.12)]"
                 >
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white">
@@ -305,22 +335,33 @@ export default function Home() {
                     Learn More →
                   </Link>
                 </div>
+                </ScrollReveal>
               );
             })}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#F6F9F2] px-6 py-24">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+      <section
+        className="relative overflow-hidden px-6 py-24"
+        style={{
+          backgroundImage: "url('/images/bg-why.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(74,63,160,0.75)" }} />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="font-bold uppercase tracking-[0.25em] text-[#F542A0]">
+            <p className="font-bold uppercase tracking-[0.25em] text-[#a89fff]">
               Why Choose ShineClean
             </p>
-            <h2 className="mt-4 text-5xl font-extrabold leading-tight">
-              Professional cleaning with care, trust, and consistency
+            <h2 className="mt-4 leading-tight text-white">
+              <span className="block text-3xl font-light text-white/70">Professional cleaning with</span>
+              <span className="block text-5xl font-extrabold">care, trust, and <span className="text-[#a89fff]">consistency</span></span>
             </h2>
-            <p className="mt-6 text-lg leading-8 text-gray-700">
+            <p className="mt-6 text-lg leading-8 text-white/75">
               We know letting someone into your home is personal. ShineClean
               focuses on dependable service, respectful communication, careful
               cleaning, and a simple process from the first message to the final
@@ -328,7 +369,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="rounded-[34px] bg-white p-8 shadow-sm">
+          <div className="rounded-[34px] bg-white/10 p-8 backdrop-blur-sm ring-1 ring-white/20">
             <div className="grid gap-5 sm:grid-cols-2">
               {[
                 ["Reliable", "We show up prepared and on time."],
@@ -336,9 +377,9 @@ export default function Home() {
                 ["Flexible", "Choose one-time, weekly, biweekly, or monthly."],
                 ["Professional", "Simple process, clean results, respectful service."],
               ].map(([title, text]) => (
-                <div key={title} className="rounded-3xl bg-[#F6F9F2] p-6">
-                  <h3 className="text-2xl font-extrabold">{title}</h3>
-                  <p className="mt-3 leading-7 text-gray-700">{text}</p>
+                <div key={title} className="rounded-3xl bg-white/10 p-6 ring-1 ring-white/10">
+                  <h3 className="text-2xl font-extrabold text-white">{title}</h3>
+                  <p className="mt-3 leading-7 text-white/70">{text}</p>
                 </div>
               ))}
             </div>
@@ -346,35 +387,56 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-gradient-to-b from-white to-[#F8FAFC] px-6 py-28">
-        <div className="mx-auto max-w-7xl text-center">
-          <p className="font-bold uppercase tracking-[0.25em] text-[#F542A0]">
+      <section
+        className="relative overflow-hidden px-6 py-28"
+        style={{
+          backgroundImage: "url('/images/bg-pricing.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(255,255,255,0.20)" }} />
+        <div className="relative mx-auto max-w-7xl text-center" style={{position:"relative",zIndex:1}}>
+          <p className="font-bold uppercase tracking-[0.25em] text-[#6C63FF]">
             How It Works
           </p>
-          <h2 className="mt-4 text-5xl font-extrabold">
-            Book your service in 4 simple steps
+          <h2 className="mt-4 leading-tight">
+            <span className="block text-3xl font-light text-[#888]">Book your service in</span>
+            <span className="block text-5xl font-extrabold text-[#111]">4 <span className="bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] bg-clip-text text-transparent">simple steps</span></span>
           </h2>
 
           <div className="mt-16 grid gap-8 md:grid-cols-4">
             {steps.map(([title, text], index) => (
-              <div key={title} className="rounded-[30px] bg-[#F6F9F2] p-8">
+              <ScrollReveal key={title} direction="up" delay={index * 0.12}>
+              <div className="rounded-[30px] bg-white/75 p-8 backdrop-blur-sm shadow-sm h-full">
                 <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-white text-3xl font-extrabold text-[#6C63FF]">
                   {index + 1}
                 </div>
                 <h3 className="mt-6 text-2xl font-extrabold">{title}</h3>
                 <p className="mt-3 leading-7 text-gray-700">{text}</p>
               </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-[#F8FAFC] to-[#F4F8EF] px-6 py-28">
-        <div className="mx-auto max-w-7xl">
-          <div className="rounded-[36px] bg-white p-7 shadow-sm">
+      <section
+        className="relative overflow-hidden px-6 py-28"
+        style={{
+          backgroundImage: "url('/images/bg-hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(255,255,255,0.18)" }} />
+        <div className="relative mx-auto max-w-7xl">
+          <div className="rounded-[36px] bg-white/85 p-7 shadow-sm backdrop-blur-sm">
             <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.2fr]">
               <div>
-                <p className="font-bold uppercase tracking-[0.25em] text-[#F542A0]">
+                <p className="font-bold uppercase tracking-[0.25em] text-[#2EC4B6]">
                   Simple & Secure
                 </p>
                 <h2 className="mt-4 text-5xl font-extrabold leading-tight">
@@ -406,10 +468,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-24">
-        <div className="mx-auto max-w-7xl rounded-[40px] bg-gradient-to-r from-[#5B52E8] to-[#7C73FF] px-8 py-20 text-center text-white shadow-xl">
-          <h2 className="text-5xl font-extrabold">
-            Request Your Free Cleaning Estimate Today
+      <section
+        className="relative overflow-hidden px-6 py-24"
+        style={{
+          backgroundImage: "url('/images/bg-cta.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(74,63,160,0.72)" }} />
+        <div className="relative mx-auto max-w-7xl rounded-[40px] bg-white/10 px-8 py-20 text-center text-white shadow-xl ring-1 ring-white/20 backdrop-blur-sm">
+          <h2 className="leading-tight">
+            <span className="block text-3xl font-light text-white/70">Request Your Free</span>
+            <span className="block text-5xl font-extrabold">Cleaning Estimate <span className="text-[#a89fff]">Today</span></span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-white/90">
             Tell us about your property and cleaning needs. Our team will review
@@ -433,6 +505,7 @@ export default function Home() {
       </section>
 
       <Footer />
+
     </main>
     )
 }

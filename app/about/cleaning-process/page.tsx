@@ -48,17 +48,27 @@ export default function CleaningProcessPage() {
     <main className="bg-white">
       <Navbar />
 
-      <section className="px-6 py-24 text-center">
-        <div className="mx-auto max-w-4xl">
+      <section
+        className="relative overflow-hidden px-6 py-24 text-center"
+        style={{
+          backgroundImage: "url('/images/bg-hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(255,255,255,0.22)" }} />
+        <div className="relative mx-auto max-w-4xl">
           <p className="text-sm font-bold uppercase tracking-[0.3em] text-[#6C63FF]">
             Cleaning Process
           </p>
 
-          <h1 className="mt-6 text-5xl font-bold leading-tight text-[#111] md:text-6xl">
-            How Our Cleaning Process Works
+          <h1 className="mt-6 leading-tight text-[#111] md:text-6xl">
+            <span className="block text-3xl font-light text-[#666] md:text-4xl">How Our</span>
+            <span className="block text-5xl font-bold md:text-6xl">Cleaning Process <span className="bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] bg-clip-text text-transparent">Works</span></span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#333]">
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#444]">
             At ShineClean, we believe a great cleaning service should feel easy,
             reliable, and stress-free. From the first booking to the final
             walkthrough, our process is designed to keep everything clear,
@@ -67,8 +77,17 @@ export default function CleaningProcessPage() {
         </div>
       </section>
 
-      <section className="bg-[#F3F8F1] px-6 py-28">
-        <div className="relative mx-auto max-w-6xl">
+      <section
+        className="relative overflow-hidden px-6 py-28"
+        style={{
+          backgroundImage: "url('/images/bg-pricing.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(243,248,241,0.82)" }} />
+        <div className="relative z-10 mx-auto max-w-6xl">
           <div className="absolute left-1/2 top-0 hidden h-full w-px -translate-x-1/2 bg-[#D8E5D1] md:block" />
 
           <div className="mx-auto mb-20 flex h-20 w-20 items-center justify-center rounded-full bg-white text-4xl shadow-sm">

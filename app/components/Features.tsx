@@ -20,20 +20,22 @@ export default function Features() {
   ];
 
   return (
-    <section className="-mt-10 relative z-20">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 bg-white rounded-3xl shadow-xl overflow-hidden">
+    <section className="relative z-20 -mt-10 px-6">
+      <div className="mx-auto grid max-w-6xl overflow-hidden rounded-3xl bg-white shadow-[0_8px_48px_rgba(108,99,255,0.12)] md:grid-cols-3">
         {features.map((item, index) => (
           <div
             key={index}
-            className="p-10 border-r last:border-r-0 border-gray-100"
+            className="group border-b border-gray-100 p-10 transition hover:bg-[#FDFCFF] md:border-b-0 md:border-r md:last:border-r-0"
           >
-            <div className="text-[#6C63FF] mb-5">{item.icon}</div>
+            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EEEAFF] text-[#6C63FF] transition group-hover:bg-[#6C63FF] group-hover:text-white">
+              {item.icon}
+            </div>
 
-            <h3 className="text-xl font-semibold mb-3">
+            <h3 className="mb-3 text-xl font-semibold text-[#111]">
               {item.title}
             </h3>
 
-            <p className="text-gray-500 leading-7">
+            <p className="leading-7 text-gray-500">
               {item.desc}
             </p>
           </div>
