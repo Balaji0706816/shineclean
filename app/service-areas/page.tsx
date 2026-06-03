@@ -22,28 +22,38 @@ export default function ServiceAreasPage() {
     <main className="bg-white">
       <Navbar />
 
-      <section className="px-6 py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12 border-b border-gray-200 pb-20 lg:grid-cols-2">
+      <section
+        className="relative overflow-hidden px-6 py-24"
+        style={{
+          backgroundImage: "url('/images/bg-hero.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0" style={{ background: "rgba(255,255,255,0.22)" }} />
+        <div className="relative mx-auto max-w-7xl">
+          <div className="grid gap-12 border-b border-white/60 pb-20 lg:grid-cols-2">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.25em] text-[#6C63FF]">
                 Cleaning Locations
               </p>
 
-              <h1 className="mt-6 max-w-3xl text-6xl font-bold leading-tight text-[#111]">
-                Find a cleaning service near you
+              <h1 className="mt-6 max-w-3xl leading-tight text-[#111]">
+                <span className="block text-3xl font-light text-[#666]">Find a cleaning service</span>
+                <span className="block text-6xl font-bold">near <span className="bg-gradient-to-r from-[#6C63FF] to-[#2EC4B6] bg-clip-text text-transparent">you</span></span>
               </h1>
             </div>
 
             <div className="flex flex-col justify-center">
-              <p className="max-w-xl text-lg leading-8 text-[#6B7280]">
+              <p className="max-w-xl text-lg leading-8 text-[#555]">
                 ShineClean proudly serves homes, apartments, offices, and rental
                 properties across Greater Boston and nearby communities.
               </p>
 
               <a
                 href="/booking"
-                className="mt-8 inline-flex w-fit rounded-full bg-[#6C63FF] px-8 py-4 font-semibold text-white transition hover:bg-[#574ee4]"
+                className="mt-8 inline-flex w-fit rounded-full bg-[#6C63FF] px-8 py-4 font-semibold text-white shadow-[0_4px_20px_rgba(108,99,255,0.35)] transition hover:bg-[#574ee4]"
               >
                 Check Availability
               </a>

@@ -2,7 +2,7 @@ import { Phone } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 z-[9999] w-full border-b border-gray-100 bg-white">
+    <header className="sticky top-0 z-[9999] w-full border-b border-[#ede9ff]/60 bg-white/90 backdrop-blur-md shadow-[0_1px_20px_rgba(108,99,255,0.07)]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
         <h1 className="text-4xl font-bold tracking-tight text-[#6C63FF]">
           ShineClean
